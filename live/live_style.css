@@ -1,0 +1,161 @@
+
+ *{
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+body{height: 100vh;
+    width: 100%;
+    margin: 0;
+    line-height: 1;
+    font-family: IBMPlexSans, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+ul{
+    list-style: none;
+}
+h1{
+    text-align: center;
+    color: red;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+
+/* main starts */
+main{
+    height: inherit;
+    transition: margin-left .5s;
+}
+
+.container1{
+    display: flex;
+    HEIGHT: inherit;
+}
+.sports{
+    background-color:  #1b1124 !important;
+    width: 17vw;
+    height:100%;
+    border-right: rgb(4, 7, 5) solid 1px;
+    padding-top: 10px;
+}
+.sports>ul{
+    padding: 5%;
+
+}
+.category{
+    color: lavenderblush;
+  
+  padding: 1%;
+  font-size: 1.3em;
+}
+.sports>ul>li{
+    padding: 2%;
+   
+}
+.sports>ul>li>a>span{
+    color: rgba(211, 211, 211, 0.637);
+    font-size: 1.2em;
+}
+.live{
+    margin: auto;
+    width: 60vw;
+    height: 100%;
+    padding: 2%;
+}
+.matches {
+    padding: 4% 10%;
+    background-color: #eaeaea;
+    border-radius: 20px;
+    margin-top: 60px;
+
+}
+.sports>ul>li>a>span:hover{
+ 
+    color:#ffffff;
+}
+
+.match{
+    padding: 3%;
+    text-align: center;
+}
+.match>a>span{
+    color: rgb(99, 8, 173);
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+.match:hover{
+    transition: all 0.2s;
+  transform: scale(1.05);
+}
+.match>a>span:hover{
+  color: rgb(255, 94, 0);
+  font-weight: 900;
+}
+
+/* main end */
+
+@media(max-width:600px) {
+    
+    .sports>h2{
+        font-size: 1em;
+    }
+    .sports>ul li{
+       font-size: small;
+    }
+     h1{
+         font-size: 1.5em;
+     }
+     .live{
+         width: 65vw;
+     }
+}
+
+
+@media(max-width:1020px){
+    .category>h2{
+        font-size: 1em;
+    }
+    .sports>ul>li>a>span {
+        font-size: 1em;
+    }
+    .match>a>span{
+        font-size: 1em;
+    }
+}
+
+@media(max-width:700px){
+    .category>h2{
+        font-size: 0.8em;
+    }
+    .sports>ul>li>a>span {
+        font-size: 0.8em;
+    }
+    .match>a>span{
+        font-size: 0.8em;
+    }
+    .sports{
+  width: 20vw;
+    }
+}
+@media(max-width:450px){
+    .category>h2{
+        font-size: 0.6em;
+    }
+    .sports>ul>li>a>span {
+        font-size: 0.6em;
+    }
+    .match>a>span{
+        font-size: 0.6em;
+    }
+    .sports{
+        width: 23vw;
+          }
+}

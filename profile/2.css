@@ -1,0 +1,144 @@
+*{
+    outline: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+img
+{
+    display: block;
+    width: 100%;
+    border: 0;
+}
+a
+{
+    text-decoration: none;
+}
+
+button
+{
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+::placeholder
+{
+    color: #f1f1f1;
+}
+@media (max-width:1100px) {
+
+    .profile-image>img{
+        height: 200px;
+        width: 200px;
+    }
+    .profile-user-name {
+        font-size: 2.2em;
+      }
+      .profile-bio{
+        font-size: 1.2em;
+    }
+    .top> span
+   {
+    font-size: 1em;
+    }
+}
+
+
+@media (max-width:770px) {
+    .profile-image>img{
+        height: 140px;
+        width: 140px;
+    }
+    .profile-user-name {
+      font-size: 2em;
+    }
+    .profile-bio{
+        font-size: 1em;
+        margin-top: 10px;
+    }
+    .top> span
+    {
+     font-size: 0.8em;
+     }
+}
+
+
+
+@media (max-width:550px) {
+    .profile-image>img{
+        width:85px;
+        height: 85px;
+    }
+    .profile-user-name {
+        font-size: 1.5em;
+      }
+      .profile-bio{
+          font-size: 0.8em;
+      }
+      .profile-user-settings {
+        margin-top: 0.8rem;
+    }.head{
+        padding: 2%;
+    }
+    .top> span
+    {
+     font-size: 0.6em;
+     }
+     
+    .top.active span:after
+    { bottom: -5px;
+      height: 2px;
+    }
+    #composer{
+        padding: 8px;
+    }
+    #c-inp input
+{   padding: 5px;
+    width: 35vw;
+   }
+   ::placeholder{
+            font-size: 0.7em;
+   }
+   .top2.active span:after
+{
+    bottom: -10px;
+}
+.top2>span{
+font-size: 0.8em;
+}
+}
+
+@media (max-width:350px) {
+    .profile-image>img{
+        width:70px;
+        height: 70px;
+    }
+    .profile-user-name {
+        font-size: 1em;
+      }
+      .profile-bio{
+          font-size: 0.5em;
+      }
+      .profile-user-settings {
+        margin-top: 0.5rem;
+    }
+    .top> span
+    {
+     font-size: 0.4em;
+     }
+     #composer{
+        padding: 6px;
+    }
+    #c-inp input
+{   padding: 5px;
+   
+   }
+   ::placeholder{
+            font-size: 0.5em;
+   }
+   .top2>span{
+    font-size: 0.5em;
+    }
+}

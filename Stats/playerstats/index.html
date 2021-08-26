@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../header.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg  ">
+        <div class="container-fluid">
+          <a class="navbar-brand krida" href="home.php">KR<span>1</span>DA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="hamb"><img src="./resources/hm.png" alt=""></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  logout" style="position: absolute;right: 5vw;" href="logout.php">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+    <main>
+        <div class="p_name" id="p_name"></div>
+        <div class="p_img" id="p_img"></div>
+        <div class="p_details" id="p_details"> </div>
+        <h2 style="color: rgb(235, 189, 122);">Batting Stats</h2>
+        <div class="p_table" id="batting">  </div>
+        <h2 style="color: rgb(235, 189, 122);">Bowling Stats</h2>
+        <div class="p_table" id="bowling"></div>
+    </main>
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+    const name = sessionStorage.getItem('Id');
+    console.log(name);
+
+    document.getElementById("p_name");
+    document.getElementById("p_img");
+    document.getElementById("p_details");
+
+    $.get(`https://cricapi.com/api/playerStats?apikey=Fly9x2wQFRWdVL3MylH2WwN27Wq2&pid=${name}`, function (matchdata) {
+        console.log(matchdata);
+        document.getElementById("p_name").innerHTML = `${matchdata.fullName}`;
+        document.getElementById("p_img").innerHTML = `<img src="${matchdata.imageURL}" >`;
+        document.getElementById("p_details").innerHTML = `<li>Born  :  <span> ${matchdata.born}</span></li>
+              <li>Age  :  <span>${matchdata.currentAge}</span> </li>
+              <li>Country  :  <span>${matchdata.country}</span></li>
+              <li>BowlingStyle  :  <span>${matchdata.battingStyle}</span></li>
+              <li>BowlingStyle  :  <span>${matchdata.bowlingStyle}</span></li>
+              <li>  <span>${matchdata.profile}</span></li>`;
+        document.getElementById("batting").innerHTML = `<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Stats</th>
+                        <th scope="col">ODI</th>
+                        <th scope="col">T20</th>
+                        <th scope="col">Test</th>
+                        <th scope="col">FirstClass</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Runs</th>
+                        <td>${matchdata.data.batting.ODIs.Runs}</td>
+                        <td>${matchdata.data.batting.T20Is.Runs}</td>
+                        <td>${matchdata.data.batting.tests.Runs}</td>
+                        <td>${matchdata.data.batting.firstClass.Runs}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Matches</th>
+                        <td>${matchdata.data.batting.ODIs.Mat}</td>
+                        <td>${matchdata.data.batting.T20Is.Mat}</td>
+                        <td>${matchdata.data.batting.tests.Mat}</td>
+                        <td>${matchdata.data.batting.firstClass.Mat}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Centuries</th>
+                        <td>${matchdata.data.batting.ODIs["100"]}</td>
+                        <td>${matchdata.data.batting.T20Is["100"]}</td>
+                        <td>${matchdata.data.batting.tests["100"]}</td>
+                        <td>${matchdata.data.batting.firstClass["100"]}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fifty</th>
+                        <td>${matchdata.data.batting.ODIs["50"]}</td>
+                        <td>${matchdata.data.batting.T20Is["50"]}</td>
+                        <td>${matchdata.data.batting.tests["50"]}</td>
+                        <td>${matchdata.data.batting.firstClass["50"]}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Highest Score</th>
+                        <td>${matchdata.data.batting.ODIs.HS}</td>
+                        <td>${matchdata.data.batting.T20Is.HS}</td>
+                        <td>${matchdata.data.batting.tests.HS}</td>
+                        <td>${matchdata.data.batting.firstClass.HS}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Strike Rate</th>
+                        <td>${matchdata.data.batting.ODIs.SR}</td>
+                        <td>${matchdata.data.batting.T20Is.SR}</td>
+                        <td>${matchdata.data.batting.tests.SR}</td>
+                        <td>${matchdata.data.batting.firstClass.SR}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Average</th>
+                        <td>${matchdata.data.batting.ODIs.Ave}</td>
+                        <td>${matchdata.data.batting.T20Is.Ave}</td>
+                        <td>${matchdata.data.batting.tests.Ave}</td>
+                        <td>${matchdata.data.batting.firstClass.Ave}</td>
+                    </tr>
+
+                </tbody>
+            </table>`;
+        document.getElementById("bowling").innerHTML = `<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Stats</th>
+                        <th scope="col">ODI</th>
+                        <th scope="col">T20</th>
+                        <th scope="col">Test</th>
+                        <th scope="col">FirstClass</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Wickets</th>
+                        <td>${matchdata.data.bowling.ODIs.Wkts}</td>
+                        <td>${matchdata.data.bowling.T20Is.Wkts}</td>
+                        <td>${matchdata.data.bowling.tests.Wkts}</td>
+                        <td>${matchdata.data.bowling.firstClass.Wkts}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Innings</th>
+                        <td>${matchdata.data.bowling.ODIs.Inns}</td>
+                        <td>${matchdata.data.bowling.T20Is.Inns}</td>
+                        <td>${matchdata.data.bowling.tests.Inns}</td>
+                        <td>${matchdata.data.bowling.firstClass.Inns}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Economy</th>
+                        <td>${matchdata.data.bowling.ODIs.Econ}</td>
+                        <td>${matchdata.data.bowling.T20Is.Econ}</td>
+                        <td>${matchdata.data.bowling.tests.Econ}</td>
+                        <td>${matchdata.data.bowling.firstClass.Econ}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Best Figure</th>
+                        <td>${matchdata.data.bowling.ODIs.BBI}</td>
+                        <td>${matchdata.data.bowling.T20Is.BBI}</td>
+                        <td>${matchdata.data.bowling.tests.BBI}</td>
+                        <td>${matchdata.data.bowling.firstClass.BBI}</td>
+                    </tr>
+
+                </tbody>
+            </table>`;
+    })
+</script>
+
+</html>

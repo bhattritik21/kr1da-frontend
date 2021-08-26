@@ -1,0 +1,69 @@
+
+.krida{
+     margin-left: 20px;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em !important;
+    font-weight:900;
+    cursor: pointer;
+}
+.krida>span{
+    color: yellow;
+}
+
+a{color: white !important;
+  text-decoration: none !important;
+}
+
+.nav-item{
+  margin-left: 20px;
+}
+.nav-link{
+  color: rgb(192, 189, 194) !important;
+}
+.nav-link:hover{
+  color: rgb(255, 255, 255) !important;
+ transform: scale(1.03);
+}
+.active{
+  color: white !important;
+  font-weight: 600;
+}
+.hamb>img{
+  padding: 28%;
+width: 30px;
+color: rgb(22, 18, 18);
+}
+.navbar-toggler {
+  padding: 0 !important;
+  background-color: rgb(235, 208, 238) !important;
+  overflow: hidden;
+}
+.navbar{
+  width: 100vw;
+  position: fixed !important;
+  background-color:  #1b1124 !important;
+  padding-right: 3%;
+  top: 0;
+  z-index: 120;
+}
+@media(max-width:990px){
+  .logout{
+    float: none;
+    position: relative !important;
+    right: 0vw !important;
+  }
+}
+
+.footer{
+  justify-content: space-between;
+  padding-right: 2%;
+  background-color: black;
+  padding-top: 1%;
+}
+.copy{
+  align-items: center;
+}
+.social>a>svg:hover{
+transform: scale(1.02);
+}

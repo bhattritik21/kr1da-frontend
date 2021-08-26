@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kr1da Profie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="1.css">
+    <link rel="stylesheet" href="2.css">
+    <link rel="stylesheet" href="../header.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <nav class="navbar navbar-expand-lg  ">
+            <div class="container-fluid">
+              <a class="navbar-brand krida" href="home.php">KR<span>1</span>DA</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="hamb"><img src="./resources/hm.png" alt=""></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link  logout" style="position: absolute;right: 5vw;" href="logout.php">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        <!-- profile section -->
+
+        <div class="profile">
+
+            <div class="profile-image">
+
+                <img src="images/p.jfif">
+            </div>
+
+            <div class="profile-user-settings">
+
+                <h1 class="profile-user-name">cr7</h1>
+                <div class="profile-bio">
+                    <p><span class="profile-real-name">Cristiano ronaldo</span> Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit 📷✈️🏕️</p>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <!-- End of profile section -->
+
+
+        <div id="main-content">
+            <div class="feed" id="m-col">
+                <div class="head" id="p-tabs">
+                    <div class=" top active" id="tog"><span>TIMELINE</span></div>
+                    <div class=" top" id="tog"><span>FRIENDS</span></div>
+                    <div class="top " id="tog"><span>COMMUNITY</span></div>
+                    <div class=" top" id="tog"><span>ABOUT</span></div>
+                </div>
+                <div class="m-mrg" id="composer">
+                    <div class="top2 active "><span>Craete Thread</span></div>
+                    <div class="top2 "><span>Photo/Video</span></div>
+                </div>
+
+                <div  class="create" id="c-c-main">
+                    <div class="y " id="p-c-i"><img src="images/p.jfif" alt="Profile pic"></div>
+                    <div class="y" id="c-inp">
+                        <input type="text" placeholder="What's on your mind?">
+                    </div>
+                </div>
+
+                <div class="posts">
+                   <div class="post">
+                    <div  class="p-cnt-v">
+                        <img src="images/skysports-lionel-messi-cristiano-ronaldo_5200235.jpg">
+                    </div>
+                    <div>
+                        <div class="p-acts">
+                            <div class="p-act like"><i class="material-icons">thumb_up_alt</i><span>25</span>
+                            </div>
+                            <div class="p-act comment"><i class="material-icons">comment</i><span>1</span>
+                            </div>
+                            <div class="p-act share"><i class="material-icons">reply</i></div>
+                        </div>
+                    </div>
+                   </div>    
+                </div>
+            </div>
+            <div id="loading">LOADING</div>
+        </div>
+        </div>
+        </div>
+
+    </main>
+    <script src="profile.js"></script>
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

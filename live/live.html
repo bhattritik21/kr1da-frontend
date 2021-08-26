@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kr1da Live</title>
+    <link rel="stylesheet" href="live_style.css">
+    <link rel="stylesheet" href="../header.css">
+    
+</head>
+
+<body>   
+    <nav class="navbar navbar-expand-lg  ">
+        <div class="container-fluid">
+          <a class="navbar-brand krida" href="home.php">KR<span>1</span>DA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="hamb"><img src="./resources/hm.png" alt=""></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  logout" style="position: absolute;right: 5vw;" href="logout.php">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+        <main>
+              <div class="container1">
+                  <div class="sports">
+                      <div class="category"><h2 >Category</h2></div>
+                       <ul>
+                           <li><a href="live.html"><span>Cricket</span></a></li>
+                           <li><a href="category/index.html"><span>Football</span></a></li>
+                           <li><a href="category/index.html"><span>Basketball</span></a></li>
+                           <li><a href="category/index.html"><span>Hockey</span></a></li>
+                           <li><a href="category/index.html"><span>Badminton</span></a></li>
+                       </ul>
+                  </div>
+                   
+                  <div class="live" >
+                   <h1>LIVE MATCHES</h1>
+                   <div class="matches" id="matches">
+        
+                   </div>
+                  </div>
+              </div>
+        </main>
+
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="index.js"></script>
+<script>
+    /* Set the width of the side navigation to 250px */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+</script>
+
+</html>

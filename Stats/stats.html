@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../header.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg  ">
+    <div class="container-fluid">
+      <a class="navbar-brand krida" href="home.php">KR<span>1</span>DA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamb"><img src="./resources/hm.png" alt=""></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  logout" style="position: absolute;right: 5vw;" href="logout.php">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="find">Find Player</div>
+
+
+    <div class="card">
+      <input class="form-input" id="playername" type="text" placeholder="Enter player's name">
+      <button class=" btn btn-sm animated-button thar-three" id="btn" onclick="dosomething()">Search</button>
+    </div>
+    <hr>
+    <div class="players" id="players">Only Cricketer's data is avialbale in this beta version</div>
+
+  </main>
+
+  <footer>
+
+  </footer>
+
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  /* Set the width of the side navigation to 250px */
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  /* Set the width of the side navigation to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+  let playername = document.getElementById('playername');
+  let btn = document.getElementById('btn');
+
+
+  function dosomething() {
+    let pname = playername.value;
+    playername.value = "";
+    let players = document.getElementById('players');
+    players.innerHTML = "";
+    $.get(` https://cricapi.com/api/playerFinder?apikey=Fly9x2wQFRWdVL3MylH2WwN27Wq2&name=${pname}`, function (matchdata) {
+      console.log(matchdata.data);
+      if (matchdata.data.length == "0") {
+        document.getElementById('players').innerHTML += ` 
+                  Sorry , no data available for this player ( or Please enter name correctly)
+                `;
+      }
+      else {
+        matchdata.data.forEach(element => {
+          document.getElementById('players').innerHTML += ` 
+                  <a href="playerstats/index.html" class="player" id="${element.pid}"">${element.fullName}</a>
+                `;
+        });
+      }
+
+      var mat = document.querySelectorAll('.player');
+      for (const button of mat) {
+        button.addEventListener('click', AddId);
+      }
+      function AddId(button) {
+        id = this["id"];
+        sessionStorage.setItem("Id", id);
+      }
+    })
+  }
+
+</script>
+
+</html>
