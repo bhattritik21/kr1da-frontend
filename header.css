@@ -1,4 +1,8 @@
-
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .krida{
      margin-left: 20px;
     color: whitesmoke;
@@ -56,6 +60,7 @@ color: rgb(22, 18, 18);
 }
 
 .footer{
+  margin-top: auto;
   justify-content: space-between;
   padding-right: 2%;
   background-color: black;
@@ -66,4 +71,22 @@ color: rgb(22, 18, 18);
 }
 .social>a>svg:hover{
 transform: scale(1.02);
+}
+
+::selection {
+  background-color: #ffffff;
+  color: #fff;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(180, 179, 179);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 5px;
 }

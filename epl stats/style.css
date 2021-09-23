@@ -1,0 +1,11 @@
+.container{
+    margin-top: 60px;
+    background-color: white;
+    padding-top: 20px;
+}
+#title>h1{
+   color:  rgb(96, 12, 107);
+}
+body{
+    background-color: rgb(202, 199, 199);
+}

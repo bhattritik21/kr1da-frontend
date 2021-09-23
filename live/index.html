@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+     
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../header.css">
+ 
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg  ">
+        <div class="container-fluid">
+          <a class="navbar-brand krida" href="../index.html">KR<span>1</span>DA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="hamb"><img src="../resources/hm.png" alt=""></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../contact/contact.html">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../profile/1.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link  logout" style="position: absolute;right: 5vw;" href="logout.php">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+
+    <div class="container">
+        <div class="top-head">
+            <div class="match-title text-center" id="match-title"></div>       
+             <div id="top-head"></div>
+        </div>
+
+        <div class="teams d-flex" style="justify-content: space-evenly;" id="content">
+            
+        </div>
+        <div class="goals d-flex" style="justify-content:space-between;">
+            <div id="team1"></div>
+            <img src="../resources/172468_ball_soccer_football_icon.png" style="width: 20px; height: 20px;" alt="">
+            <div id="team2"></div>
+        </div>
+        <div id="live_chat">
+
+        </div>
+    </div>
+</body>
+<script>
+  const name = sessionStorage.getItem('Id');
+  // const league = sessionStorage.getItem('league');
+   console.log(name);
+   let head = document.getElementById('top-head');
+   let title = document.getElementById('match-title');
+   let content = document.getElementById('content');
+   let team1 = document.getElementById('team1');
+   let team2 = document.getElementById('team2');
+
+    fetch(` https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard`).then(response => {
+        let data = response.json();
+        data.then(response=>{
+          
+  
+            let data = response.events;
+            response.events.forEach(element => {
+              if(element.id==name){
+                head.innerHTML+=`  <h5 class="tour text-center">${response.leagues[0].name}</h5>`;
+                console.log(element.competitions[0]);
+                title.innerHTML+=`<h3>${element.competitions[0].competitors[0].team.displayName} Vs ${element.competitions[0].competitors[1].team.displayName} </h3>`;
+            head.innerHTML+=`  <p class="full-time text-center">${element.status.type.description}</p>`;
+            content.innerHTML=`<img src=${element.competitions[0].competitors[0].team.logo} style="width: 100px; height: 100px;" alt="">
+            <h1 class="score">${element.competitions[0].competitors[0].score}</h1>
+            <span style="font-size:2em;">-</span>
+            <h1 class="score">${element.competitions[0].competitors[1].score}</h1>
+            <img src=${element.competitions[0].competitors[1].team.logo} style="width: 100px; height: 100px;" alt="">`;
+            // team1.innerHTML=`<p>${element.competitions[0].details[7].athletesInvolved[0].displayName}</p>`;
+            // team2.innerHTML=`<p>${element.competitions[0].details[5].athletesInvolved[0].displayName}</p>`;
+            let goal= element.competitions[0].details;
+             goal.forEach(elements=>{
+               if(elements.scoreValue==1)
+               {
+                 console.log(elements.athletesInvolved[0].displayName);
+               
+                 sessionStorage.setItem("TId", elements.team.id);
+                 sessionStorage.setItem("Pname", elements.athletesInvolved[0].displayName);
+                 sessionStorage.setItem("Time", elements.clock.displayValue);
+                 let id = sessionStorage.getItem('TId');
+                 let Pname = sessionStorage.getItem('Pname');
+                 let time = sessionStorage.getItem('Time')
+                 if(element.competitions[0].competitors[0].id==id){
+                  team1.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+                 else{
+                  team2.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+               }
+             })
+              }
+        
+              
+            });
+           
+        })
+})
+.catch(err => {
+	console.error(err);
+});
+fetch(` https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard`).then(response => {
+        let data = response.json();
+        data.then(response=>{
+          
+  
+            let data = response.events;
+            response.events.forEach(element => {
+              if(element.id==name){
+                head.innerHTML+=`  <h5 class="tour text-center">${response.leagues[0].name}</h5>`;
+                console.log(element.competitions[0]);
+                title.innerHTML+=`<h3>${element.competitions[0].competitors[0].team.displayName} Vs ${element.competitions[0].competitors[1].team.displayName} </h3>`;
+            head.innerHTML+=`  <p class="full-time text-center">${element.status.type.description}</p>`;
+            content.innerHTML=`<img src=${element.competitions[0].competitors[0].team.logo} style="width: 100px; height: 100px;" alt="">
+            <h1 class="score">${element.competitions[0].competitors[0].score}</h1>
+            <span style="font-size:2em;">-</span>
+            <h1 class="score">${element.competitions[0].competitors[1].score}</h1>
+            <img src=${element.competitions[0].competitors[1].team.logo} style="width: 100px; height: 100px;" alt="">`;
+            // team1.innerHTML=`<p>${element.competitions[0].details[7].athletesInvolved[0].displayName}</p>`;
+            // team2.innerHTML=`<p>${element.competitions[0].details[5].athletesInvolved[0].displayName}</p>`;
+            let goal= element.competitions[0].details;
+            goal.forEach(elements=>{
+               if(elements.scoreValue==1)
+               {
+                 console.log(elements.athletesInvolved[0].displayName);
+                 console.log(elements.clock.displayValue);
+                 sessionStorage.setItem("TId", elements.team.id);
+                 sessionStorage.setItem("Pname", elements.athletesInvolved[0].displayName);
+                 sessionStorage.setItem("Time", elements.clock.displayValue);
+                 let id = sessionStorage.getItem('TId');
+                 let Pname = sessionStorage.getItem('Pname');
+                 let time = sessionStorage.getItem('Time')
+                 if(element.competitions[0].competitors[0].id==id){
+                  team1.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+                 else{
+                  team2.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+               }
+             })
+              }
+        
+              
+            });
+           
+        })
+})
+.catch(err => {
+	console.error(err);
+});
+fetch(` https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard`).then(response => {
+        let data = response.json();
+        data.then(response=>{
+          
+  
+            let data = response.events;
+            response.events.forEach(element => {
+              if(element.id==name){
+                head.innerHTML+=`  <h5 class="tour text-center">${response.leagues[0].name}</h5>`;
+                console.log(element.competitions[0]);
+                title.innerHTML+=`<h3>${element.competitions[0].competitors[0].team.displayName} Vs ${element.competitions[0].competitors[1].team.displayName} </h3>`;
+            head.innerHTML+=`  <p class="full-time text-center">${element.status.type.description}</p>`;
+            content.innerHTML=`<img src=${element.competitions[0].competitors[0].team.logo} style="width: 100px; height: 100px;" alt="">
+            <h1 class="score">${element.competitions[0].competitors[0].score}</h1>
+            <span style="font-size:2em;">-</span>
+            <h1 class="score">${element.competitions[0].competitors[1].score}</h1>
+            <img src=${element.competitions[0].competitors[1].team.logo} style="width: 100px; height: 100px;" alt="">`;
+            // team1.innerHTML=`<p>${element.competitions[0].details[7].athletesInvolved[0].displayName}</p>`;
+            // team2.innerHTML=`<p>${element.competitions[0].details[5].athletesInvolved[0].displayName}</p>`;
+            let goal= element.competitions[0].details;
+            goal.forEach(elements=>{
+               if(elements.scoreValue==1)
+               {
+                 console.log(elements.athletesInvolved[0].displayName);
+                 sessionStorage.setItem("TId", elements.team.id);
+                 sessionStorage.setItem("Pname", elements.athletesInvolved[0].displayName);
+                 sessionStorage.setItem("Time", elements.clock.displayValue);
+                 let id = sessionStorage.getItem('TId');
+                 let Pname = sessionStorage.getItem('Pname');
+                 let time = sessionStorage.getItem('Time')
+                 if(element.competitions[0].competitors[0].id==id){
+                  team1.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+                 else{
+                  team2.innerHTML+=`<p style="font-weight:600;">${Pname} ${time}</p>`;
+                 }
+               }
+             })
+              }
+        
+              
+            });
+           
+        })
+})
+.catch(err => {
+	console.error(err);
+});
+</script>
+<script src="index.js"></script>
+
+</html>
